@@ -17,8 +17,8 @@
     </properties>
 
     <scm>
-        <url>https://github.com/thefishlive/icons-generator-plugin</url>
-        <developerConnection>scm:git:https://github.com/thefishlive/icons-generator-plugin.git</developerConnection>
+        <url>https://github.com/thefishlive/icons-maven-plugin</url>
+        <developerConnection>scm:git:https://github.com/thefishlive/icons-maven-plugin.git</developerConnection>
         <tag>HEAD</tag>
     </scm>
 
