@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>uk.co.thefishlive.it</groupId>
+    <artifactId>simple-it</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <name>Simple Integration Test</name>
+    <description>A simple IT verifying the basic use case.</description>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>@project.groupId@</groupId>
+                <artifactId>@project.artifactId@</artifactId>
+                <version>@project.version@</version>
+
+                <executions>
+                    <execution>
+                        <id>generate-icons</id>
+
+                        <goals>
+                            <goal>icons-generate</goal>
+                        </goals>
+
+                        <configuration>
+                            <iconDirectories>
+                                <iconDirectory>${project.basedir}/src/main/resources/images/icons</iconDirectory>
+                            </iconDirectories>
+
+                            <uiDirectories>
+                                <uiDirectory>${project.basedir}/src/main/resources/ui/</uiDirectory>
+                            </uiDirectories>
+
+                            <outputFile>${project.build.directory}/classes/data/icons.dat</outputFile>
+
+                            <mappings>
+                                <mode_edit>edit</mode_edit>
+                            </mappings>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

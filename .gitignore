@@ -1,6 +1,14 @@
+# Created by .gitignore support plugin (hsz.mobi)
+### Maven template
+
+## Build Files ##
 target/
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
 pom.xml.next
 release.properties
+
+## IDE Files ##
+.idea/
+*.iml
