@@ -119,6 +119,7 @@
                 <executions>
                     <execution>
                         <id>release</id>
+						
                         <goals>
                             <goal>perform</goal>
                         </goals>
@@ -126,6 +127,10 @@
                 </executions>
 
                 <configuration>
+					<goals>
+						<goal>deploy</goal>
+					</goals>
+					
                     <tagNameFormat>@{project.version}</tagNameFormat>
                 </configuration>
             </plugin>
