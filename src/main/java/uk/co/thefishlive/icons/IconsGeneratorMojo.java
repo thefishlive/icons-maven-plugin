@@ -42,20 +42,23 @@ public class IconsGeneratorMojo extends AbstractMojo {
     @Component
     private MavenProjectHelper projectHelper;
 
-    @Parameter(property = "mappings")
+    @Parameter(property = "icons.mappings")
     private Map<String, String> mappings = Maps.newHashMap();
 
-    @Parameter(property = "icon-directories", required = true)
+    @Parameter(property = "icons.directories.icon", required = true)
     private List<String> iconDirectories;
 
-    @Parameter(property = "ui-directories", required = true)
+    @Parameter(property = "icons.directories.ui", required = true)
     private List<String> uiDirectories;
 
-    @Parameter(property = "output-file", required = true)
+    @Parameter(property = "icons.output.file", required = true)
     private File outputFile;
 
-    @Parameter(property = "pretty-print")
+    @Parameter(property = "icons.pretty-print")
     private boolean pretty;
+
+    @Parameter(property = "icons.forcedIcons")
+    private List<IconData> forcedIcons;
 
     private Map<IconData, String> icons = Maps.newHashMap();
     private Map<IconData, String> used = Maps.newHashMap();
@@ -92,6 +95,17 @@ public class IconsGeneratorMojo extends AbstractMojo {
         getLog().info("Processing ui files");
         CssParser parser = new CssParser();
 
+        for (IconData data : this.forcedIcons) {
+            if (icons.containsKey(data)) {
+                if (!used.containsKey(data)) {
+                    getLog().debug("Icon " + data + " forced");
+                    used.put(data, icons.get(data));
+                }
+            } else {
+                getLog().warn("Could not find icon for data " + data);
+            }
+        }
+
         for (Map.Entry<String, Document> entry : uis.entrySet()) {
             Document document = entry.getValue();
             document.getDocumentElement().normalize();
@@ -115,8 +129,10 @@ public class IconsGeneratorMojo extends AbstractMojo {
                         IconData data = new IconData(style);
 
                         if (icons.containsKey(data)) {
-                            getLog().debug("Icon " + data + " used");
-                            used.put(data, icons.get(data));
+                            if (!used.containsKey(data)) {
+                                getLog().debug("Icon " + data + " used");
+                                used.put(data, icons.get(data));
+                            }
                         } else {
                             getLog().warn("Could not find icon for data " + data);
                         }

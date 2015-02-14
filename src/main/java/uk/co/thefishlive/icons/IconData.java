@@ -1,6 +1,8 @@
 package uk.co.thefishlive.icons;
 
 import java.util.regex.Pattern;
+
+import org.apache.maven.plugins.annotations.Parameter;
 import uk.co.thefishlive.icons.css.CssElementList;
 
 /**
@@ -13,9 +15,15 @@ public class IconData {
 
     private static final Pattern FORMAT_NAME = Pattern.compile("_", Pattern.LITERAL);
 
+    @Parameter ( required = true )
     private String id;
+    @Parameter ( required = true )
     private String color;
+    @Parameter ( required = true )
     private String size;
+
+    public IconData() {
+    }
 
     public IconData(String id) {
         this(id, DEFAULT_COLOUR, DEFAULT_SIZE);
